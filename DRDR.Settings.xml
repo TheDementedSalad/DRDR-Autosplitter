@@ -1,0 +1,68 @@
+<Settings>
+    <Setting Id="Main" Label="Main Story Events" State="false">
+		<Setting Id="Event_265" Label="Finish the Prologue" State="false"/>
+		<Setting Id="Case1" Label="Case 1" State="false">
+			<Setting Id="Event_268" Label="Finish Case 1-1" State="false"/>
+			<Setting Id="Event_270" Label="Finish Case 1-2 (Defeat Carlito)" State="false"/>
+			<Setting Id="Event_272" Label="Finish Case 1-3" State="false"/>
+			<Setting Id="Event_273" Label="Finish Case 1-4" State="false"/>
+		</Setting>
+		<Setting Id="Case2" Label="Case 2" State="false">
+			<Setting Id="Event_275" Label="Finish Case 2-1" State="false"/>
+			<Setting Id="Event_277" Label="Finish Case 2-2 (Defeat Carlito)" State="false"/>
+			<Setting Id="Event_NA" Label="Finish Case 2-3 (Not working atm)" State="false"/>
+		</Setting>
+		<Setting Id="Case3" Label="Case 3" State="false">
+			<Setting Id="Event_283" Label="Finish Case 3-1" State="false"/>
+		</Setting>
+		<Setting Id="Case4" Label="Case 4" State="false">
+			<Setting Id="Event_284" Label="Finish Case 4-1" State="false"/>
+			<Setting Id="Event_286" Label="Finish Case 4-2 (Defeat Isabela)" State="false"/>
+		</Setting>
+		<Setting Id="Case5" Label="Case 5" State="false">
+			<Setting Id="Event_291" Label="Finish Case 5-1" State="false"/>
+			<Setting Id="Event_292" Label="Finish Case 5-2" State="false"/>
+		</Setting>
+		<Setting Id="Case6" Label="Case 6" State="false">
+			<Setting Id="Event_313" Label="Finish Case 6-1" State="false"/>
+		</Setting>
+		<Setting Id="Case7" Label="Case 7" State="false">
+			<Setting Id="Event_296" Label="Finish Case 7-1" State="false"/>
+			<Setting Id="Event_297" Label="Defeat Carlito" State="false"/>
+			<Setting Id="Event_298" Label="Finish Case 7-2" State="false"/>
+		</Setting>
+		<Setting Id="Case8" Label="Case 8" State="false">
+			<Setting Id="Event_300" Label="Finish Case 8-1" State="false"/>
+			<Setting Id="Event_301" Label="Finish Case 8-2" State="false"/>
+			<Setting Id="Event_302" Label="Finish Case 8-3" State="false"/>
+			<Setting Id="Event_304" Label="Finish Case 8-4 (Defeat Larry)" State="false"/>
+		</Setting>
+		<Setting Id="Facts" Label="The Facts" State="false">
+			<Setting Id="Event_305" Label="Finish The Facts" State="false"/>
+		</Setting>
+		<Setting Id="Over" Label="Overtime" State="false">
+			<Setting Id="Event_136" Label="Delivered Items to Isabela" State="false"/>
+			<Setting Id="Event_130" Label="Delivered Queens to Isabela" State="false"/>
+			<Setting Id="Event_141" Label="Escaped Tunnel" State="false"/>
+			<Setting Id="Event_150" Label="Defeat Tank" State="false"/>
+		</Setting>
+		<Setting Id="Ends" Label="Endings" State="false">
+			<Setting Id="Event_312" Label="Ending A" State="false"/>
+			<Setting Id="Event_139" Label="Ending S (Defeat Brock)" State="false"/>
+		</Setting>
+	</Setting>
+	<Setting Id="Char" Label="Character Stories" State="false">
+		<Setting Id="Event_342" Label="Kent First Quest" State="false"/>
+		<Setting Id="Event_352" Label="Kent Second Quest" State="false"/>
+	</Setting>
+	<Setting Id="Boss" Label="Bosses" State="false">
+		<Setting Id="Event_333" Label="Defeat Cliff" State="false"/>
+		<Setting Id="Event_334" Label="Defeat Cletus" State="false"/>
+		<Setting Id="Event_281" Label="Defeat Steven" State="false"/>
+		<Setting Id="Event_336" Label="Defeat Adam" State="false"/>
+		<Setting Id="Event_337" Label="Defeat Jo" State="false"/>
+		<Setting Id="Event_335" Label="Defeat Sean" State="false"/>
+		<Setting Id="Event_332" Label="Defeat Kent" State="false"/>
+		<Setting Id="Event_338" Label="Defeat Paul" State="false"/>
+	</Setting>
+</Settings>  
