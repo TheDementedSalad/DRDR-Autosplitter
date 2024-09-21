@@ -51,18 +51,30 @@
 			<Setting Id="Event_139" Label="Ending S (Defeat Brock)" State="false"/>
 		</Setting>
 	</Setting>
-	<Setting Id="Char" Label="Character Stories" State="false">
-		<Setting Id="Event_342" Label="Kent First Quest" State="false"/>
-		<Setting Id="Event_352" Label="Kent Second Quest" State="false"/>
-	</Setting>
 	<Setting Id="Boss" Label="Bosses" State="false">
+		<Setting Id="Kent" Label="Kent Questline" State="false">
+			<Setting Id="Event_342" Label="Kent First Quest" State="false"/>
+			<Setting Id="Event_352" Label="Kent Second Quest" State="false"/>
+			<Setting Id="Event_332" Label="Defeat Kent" State="false"/>
+		</Setting>
+		<Setting Id="Sniper" Label="Hall Family" State="false">
+			<Setting Id="Psycho_Em4e_Em58_Jack" Label="Defeat Jack" State="false"/>
+			<Setting Id="Psycho_Em4e_Em57_Roger" Label="Defeat Roger" State="false"/>
+			<Setting Id="Psycho_Em4e_Em59_Thomas" Label="Defeat Thomas" State="false"/>
+			<Setting Id="Psycho_Hall" Label="Defeated the Hall Family" State="false"/>
+		</Setting>
+		<Setting Id="Convict" Label="Machine Gun Convicts" State="false">
+			<Setting Id="Psycho_PREF_Em4d_MASSINGUN(4d)" Label="Prisoner Machine Gunner" State="false"/>
+			<Setting Id="Psycho_PREF_Em4d_DRIVER(4c)" Label="Prisoner Driver" State="false"/>
+			<Setting Id="Psycho_PREF_Em4d_ASSISTANT(4e)" Label="Prisoner Passenger" State="false"/>
+			<Setting Id="Psycho_Convicts" Label="Defeated All 3 Convicts" State="false"/>
+		</Setting>
 		<Setting Id="Event_333" Label="Defeat Cliff" State="false"/>
 		<Setting Id="Event_334" Label="Defeat Cletus" State="false"/>
 		<Setting Id="Event_281" Label="Defeat Steven" State="false"/>
 		<Setting Id="Event_336" Label="Defeat Adam" State="false"/>
 		<Setting Id="Event_337" Label="Defeat Jo" State="false"/>
 		<Setting Id="Event_335" Label="Defeat Sean" State="false"/>
-		<Setting Id="Event_332" Label="Defeat Kent" State="false"/>
 		<Setting Id="Event_338" Label="Defeat Paul" State="false"/>
 	</Setting>
 </Settings>  
