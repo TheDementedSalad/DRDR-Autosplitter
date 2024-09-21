@@ -22,12 +22,20 @@ init
 	IntPtr AreaManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 81 b8 ???????????????? 74 ?? 48 8b 83");
 	IntPtr PlayerStatusManager = vars.Helper.ScanRel(3, "48 8b 15 ???????? 48 8b cf 44 89 74 24");
 	IntPtr SoundFlowStateManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 83 78 ???? 0f 84 ???????? 48 8b 05");
+	IntPtr EnemyManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 48 8b 90 ???????? e8 ???????? 84 c0");
 	
 	//_CurrentChapter
 	vars.Helper["CurrentEvent"] = vars.Helper.Make<short>(EventTimelineManager, 0x78);
 	vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15C);
 	
-	vars.Helper["SoundFlow"] = vars.Helper.Make<int>(SoundFlowStateManager, 0x70);
+	vars.Helper["SoundFlow"] = vars.Helper.Make<byte>(SoundFlowStateManager, 0x58, 0x18);
+	
+	vars.Helper["Psycho1ID"] = vars.Helper.MakeString(EnemyManager, 0x58, 0x10, 0x20, 0x10, 0x28, 0x14);
+	vars.Helper["Psycho1HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x20, 0xD0, 0x54);
+	vars.Helper["Psycho2ID"] = vars.Helper.MakeString(EnemyManager, 0x58, 0x10, 0x28, 0x10, 0x28, 0x14);
+	vars.Helper["Psycho2HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x28, 0xD0, 0x54);
+	vars.Helper["Psycho3ID"] = vars.Helper.MakeString(EnemyManager, 0x58, 0x10, 0x30, 0x10, 0x28, 0x14);
+	vars.Helper["Psycho3HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x30, 0xD0, 0x54);
 	
 	vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x10);
 	vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x12);
@@ -35,6 +43,9 @@ init
 	vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x16);
 	
 	vars.completedSplits = new HashSet<string>();
+	vars.Enemy = EnemyManager;
+	vars.Convicts = 0;
+	vars.Hall = 0;
 }
 
 update
@@ -49,6 +60,8 @@ onStart
 {
 	vars.completedSplits.Clear();
 	timer.IsGameTimePaused = true;
+	vars.Convicts = 0;
+	vars.Hall = 0;
 }
 
 start
@@ -60,8 +73,30 @@ split
 {
 	string setting = "";
 	
-	if (current.CurrentEvent != old.CurrentEvent && current.CurrentEvent != -1){
+	if(current.Psycho1HP == 0 && old.Psycho1HP > 0){
+		setting = "Psycho_" + current.Psycho1ID;
+	}
+	
+	if(current.Psycho2HP == 0 && old.Psycho2HP > 0){
+		setting = "Psycho_" + current.Psycho2ID;
+	}
+	
+	if(current.Psycho3HP == 0 && old.Psycho3HP > 0){
+		setting = "Psycho_" + current.Psycho3ID;
+	}
+	
+	if(current.CurrentEvent != old.CurrentEvent && current.CurrentEvent != -1){
 		setting = "Event_" + current.CurrentEvent;
+	}
+	
+	if(current.Psycho1HP == 0 && current.Psycho2HP == 0 && current.Psycho3HP == 0 && current.AreaStageIndex == 7 && current.RoomNo == 1792 && vars.Convicts != 1){
+		setting = "Psycho_Convicts";
+		vars.Convicts++;
+	}
+	
+	if(current.Psycho1HP == 0 && current.Psycho2HP == 0 && current.Psycho3HP == 0 && current.AreaStageIndex == 1 && current.AreaNoIndex == 0 && vars.Hall != 1){
+		setting = "Psycho_Hall";
+		vars.Hall++;
 	}
 	
 	// Debug. Comment out before release.
