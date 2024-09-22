@@ -10,7 +10,7 @@
 		<Setting Id="Case2" Label="Case 2" State="false">
 			<Setting Id="Event_275" Label="Finish Case 2-1" State="false"/>
 			<Setting Id="Event_277" Label="Finish Case 2-2 (Defeat Carlito)" State="false"/>
-			<Setting Id="Event_NA" Label="Finish Case 2-3 (Not working atm)" State="false"/>
+			<Setting Id="Case_2-3" Label="Finish Case 2-3" State="false"/>
 		</Setting>
 		<Setting Id="Case3" Label="Case 3" State="false">
 			<Setting Id="Event_283" Label="Finish Case 3-1" State="false"/>
