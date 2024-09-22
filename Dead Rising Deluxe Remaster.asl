@@ -28,7 +28,7 @@ init
 	vars.Helper["CurrentEvent"] = vars.Helper.Make<short>(EventTimelineManager, 0x78);
 	vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15C);
 	
-	vars.Helper["SoundFlow"] = vars.Helper.Make<byte>(SoundFlowStateManager, 0x58, 0x18);
+	vars.Helper["SoundFlow"] = vars.Helper.Make<byte>(SoundFlowStateManager, 0x70);
 	
 	vars.Helper["Psycho1ID"] = vars.Helper.MakeString(EnemyManager, 0x58, 0x10, 0x20, 0x10, 0x28, 0x14);
 	vars.Helper["Psycho1HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x20, 0xD0, 0x54);
