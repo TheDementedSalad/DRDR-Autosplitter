@@ -23,6 +23,7 @@ init
 	IntPtr PlayerStatusManager = vars.Helper.ScanRel(3, "48 8b 15 ???????? 48 8b cf 44 89 74 24");
 	IntPtr SoundFlowStateManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 83 78 ???? 0f 84 ???????? 48 8b 05");
 	IntPtr EnemyManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 48 8b 90 ???????? e8 ???????? 84 c0");
+	IntPtr SCQManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 4c 8d 4d ?? 45 8b 47");
 	
 	//_CurrentChapter
 	vars.Helper["CurrentEvent"] = vars.Helper.Make<short>(EventTimelineManager, 0x78);
@@ -41,6 +42,9 @@ init
 	vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x12);
 	vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x14);
 	vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x16);
+
+	vars.Helper["QParam1"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x10);
+	vars.Helper["QState"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x14);
 	
 	vars.completedSplits = new HashSet<string>();
 	vars.Enemy = EnemyManager;
@@ -98,10 +102,14 @@ split
 		setting = "Psycho_Hall";
 		vars.Hall++;
 	}
+
+	if(current.QParam1 == 7 && old.QParam1 != 7 && current.QState == 5){
+		setting = "Case_2-3";
+	}
 	
 	// Debug. Comment out before release.
-	if (!string.IsNullOrEmpty(setting))
-	vars.Log(setting);
+	//if (!string.IsNullOrEmpty(setting))
+	//vars.Log(setting);
 
 	if (settings.ContainsKey(setting) && settings[setting] && vars.completedSplits.Add(setting)){
 		return true;
