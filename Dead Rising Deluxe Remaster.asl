@@ -3,6 +3,7 @@
 
 //Special thanks to creators and testers:
 //Ecdycis - Went through the game and showed event numbers for me to jot down
+//Streetbackguy
 
 
 //TheDementedSalad - Created the splitter 
@@ -24,6 +25,7 @@ init
 	IntPtr SoundFlowStateManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 83 78 ???? 0f 84 ???????? 48 8b 05");
 	IntPtr EnemyManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 48 8b 90 ???????? e8 ???????? 84 c0");
 	IntPtr SCQManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 4c 8d 4d ?? 45 8b 47");
+    IntPtr SolidStorage = vars.Helper.ScanRel(3, "48 8b 15 ???????? 45 33 c9 48 8b cf 45 8d 41 ?? e8 ?? ?? ?? ?? c6 83");
 	
 	//_CurrentChapter
 	vars.Helper["CurrentEvent"] = vars.Helper.Make<short>(EventTimelineManager, 0x78);
@@ -42,9 +44,12 @@ init
 	vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x12);
 	vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x14);
 	vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x16);
+    vars.Helper["PlayerLevel"] = vars.Helper.Make<short>(PlayerStatusManager, 0xE0);
 
 	vars.Helper["QParam1"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x10);
 	vars.Helper["QState"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x14);
+
+    vars.Helper["ZombieKills"] = vars.Helper.Make<short>(SolidStorage, 0xB8);
 	
 	vars.completedSplits = new HashSet<string>();
 	vars.Enemy = EnemyManager;
@@ -106,7 +111,17 @@ split
 	if(current.QParam1 == 7 && old.QParam1 != 7 && current.QState == 5){
 		setting = "Case_2-3";
 	}
-	
+    
+    if(current.PlayerLevel > old.PlayerLevel && current.PlayerLevel != old.PlayerLevel)
+    {
+		setting = "LevelMax_" + current.PlayerLevel;
+	}
+
+    if(current.ZombieKills != old.ZombieKills && current.ZombieKills > old.ZombieKills)
+    {
+		setting = "Genocider_" + current.ZombieKills;
+	}
+
 	// Debug. Comment out before release.
 	//if (!string.IsNullOrEmpty(setting))
 	//vars.Log(setting);
