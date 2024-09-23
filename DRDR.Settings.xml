@@ -77,4 +77,18 @@
 		<Setting Id="Event_335" Label="Defeat Sean" State="false"/>
 		<Setting Id="Event_338" Label="Defeat Paul" State="false"/>
 	</Setting>
+	<Setting Id="LevelMax" Label="Level Max" State="false">
+    <Setting Id="LevelMax_10" Label="Level 10" State="false"/>
+		<Setting Id="LevelMax_20" Label="Level 20" State="false"/>
+		<Setting Id="LevelMax_30" Label="Level 30" State="false"/>
+		<Setting Id="LevelMax_40" Label="Level 40" State="false"/>
+		<Setting Id="LevelMax_50" Label="Level 50" State="false"/>
+	</Setting>
+	<Setting Id="Genocider" Label="Zombie Genocider" State="false">
+		<Setting Id="Genocider_10000" Label="10000 Killed" State="false"/>
+		<Setting Id="Genocider_20000" Label="20000 Killed" State="false"/>
+		<Setting Id="Genocider_30000" Label="30000 Killed" State="false"/>
+		<Setting Id="Genocider_40000" Label="40000 Killed" State="false"/>
+		<Setting Id="Genocider_53594" Label="53594 Killed" State="false"/>
+	</Setting>
 </Settings>  
