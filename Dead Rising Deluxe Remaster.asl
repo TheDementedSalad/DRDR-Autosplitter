@@ -57,23 +57,19 @@ init
 	vars.Helper["Psycho3HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x30, 0xD0, 0x54);
 
 	if(version == "8 Nov 2024"){
-        vars.Helper["IsLoadingLevel"] = vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x10);
+        vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x10);
 	vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x12);
 	vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x14);
 	vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x16);
     	}
     	else{
-        	vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x10);
+        vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x10);
 	vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x12);
 	vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x14);
 	vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x16);
     	}
 
-	vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x10);
-	vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x12);
-	vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x14);
-	vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x16);
-    vars.Helper["PlayerLevel"] = vars.Helper.Make<short>(PlayerStatusManager, 0xE8);
+    	vars.Helper["PlayerLevel"] = vars.Helper.Make<short>(PlayerStatusManager, 0xE8);
 
 	vars.Helper["QParam1"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x10);
 	vars.Helper["QState"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x14);
