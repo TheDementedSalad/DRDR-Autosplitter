@@ -23,12 +23,12 @@ startup
 
 init
 {
-    switch (modules.First().ModuleMemorySize)
-    {
-        case (667975680):
-            version = "8 Nov 2024";
-            break;
-    }
+	switch (modules.First().ModuleMemorySize)
+	{
+		case (667975680):
+			version = "8 Nov 2024";
+			break;
+	}
 
 	IntPtr EventTimelineManager = vars.Helper.ScanRel(3, "48 8b 0d ???????? 83 79 ???? 74 ?? 8b 43");
 	IntPtr AreaManager = vars.Helper.ScanRel(3, "48 8b 05 ?? ?? ?? ?? 4c 8b c3 48 8b cf 48 8b 90");
@@ -63,14 +63,14 @@ init
 		vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x12);
 		vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x14);
 		vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x16);
-    }
-    else{
+	}
+	else{
 		vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15C);
 		vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x10);
 		vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x12);
 		vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x14);
 		vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x16);
-    }
+	}
 	
 	vars.completedSplits = new HashSet<string>();
 	vars.Enemy = EnemyManager;
@@ -95,7 +95,7 @@ onStart
 }
 
 start
-{	
+{
 	return current.AreaStageIndex == 1 && current.AreaNoIndex == 31 && current.RoomNo == 309 && old.SoundFlow == 9;
 }
 
@@ -132,14 +132,14 @@ split
 	if(current.QParam1 == 7 && old.QParam1 != 7 && current.QState == 5){
 		setting = "Case_2-3";
 	}
-    
-    if(current.PlayerLevel > old.PlayerLevel && current.PlayerLevel != old.PlayerLevel)
-    {
+
+	if(current.PlayerLevel > old.PlayerLevel && current.PlayerLevel != old.PlayerLevel)
+	{
 		setting = "LevelMax_" + current.PlayerLevel;
 	}
 
-    if(current.ZombieKills != old.ZombieKills && current.ZombieKills > old.ZombieKills)
-    {
+	if(current.ZombieKills != old.ZombieKills && current.ZombieKills > old.ZombieKills)
+	{
 		setting = "Genocider_" + current.ZombieKills;
 	}
 
