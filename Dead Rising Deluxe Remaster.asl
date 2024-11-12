@@ -1,4 +1,4 @@
-//Dead Rising Deluxe Remaster Autosplitter Version 1.0 (20/09/24)
+//Dead Rising Deluxe Remaster Autosplitter Version 1.0.1 (12/11/24)
 //Created by TheDementedSalad
 //Updated for 08/11/2024 Patch by Streetbackguy
 
@@ -40,12 +40,6 @@ init
 	
 	//_CurrentChapter
 	vars.Helper["CurrentEvent"] = vars.Helper.Make<short>(EventTimelineManager, 0x78);
-	if(version == "8 Nov 2024"){
-        vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15E);
-    }
-    else{
-        vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15C);
-    }
 	
 	vars.Helper["SoundFlow"] = vars.Helper.Make<byte>(SoundFlowStateManager, 0x70);
 	
@@ -56,25 +50,27 @@ init
 	vars.Helper["Psycho3ID"] = vars.Helper.MakeString(EnemyManager, 0x58, 0x10, 0x30, 0x10, 0x28, 0x14);
 	vars.Helper["Psycho3HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x30, 0xD0, 0x54);
 
-	if(version == "8 Nov 2024"){
-        vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x10);
-	vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x12);
-	vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x14);
-	vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x16);
-    	}
-    	else{
-        vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x10);
-	vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x12);
-	vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x14);
-	vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x16);
-    	}
-
-    	vars.Helper["PlayerLevel"] = vars.Helper.Make<short>(PlayerStatusManager, 0xE8);
+    vars.Helper["PlayerLevel"] = vars.Helper.Make<short>(PlayerStatusManager, 0xE8);
 
 	vars.Helper["QParam1"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x10);
 	vars.Helper["QState"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x14);
 
     vars.Helper["ZombieKills"] = vars.Helper.Make<short>(SolidStorage, 0xB8);
+	
+	if(version == "8 Nov 2024"){
+        vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15E);
+		vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x10);
+		vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x12);
+		vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x14);
+		vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x16);
+    }
+    else{
+        vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15C);
+		vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x10);
+		vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x12);
+		vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x14);
+		vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xA8, 0x60, 0x16);
+    }
 	
 	vars.completedSplits = new HashSet<string>();
 	vars.Enemy = EnemyManager;
