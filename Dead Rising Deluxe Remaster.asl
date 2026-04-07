@@ -15,7 +15,29 @@
 
 //667975680
 
-state("DRDR"){}
+state("DRDR", "8 Nov 2024"){}
+state("DRDR", "20 Nov 2024"){}
+state("DRDR", "1 Sep 2025")
+{
+	///Every address should be the same with the exception of IsLoadingLevel which I'm not 100% confident
+	short CurrentEvent: 0xAEEDB68, 0x78;
+	bool IsLoadingLevel: 0xAEEA8E8, 0x150;
+	short ZombieKills: 0xAEEDB90, 0xBC;
+	byte SoundFlow: 0xAEF3670, 0x70;
+	string255 Psycho1ID: 0xAEF4CF8, 0x58, 0x10, 0x20, 0x10, 0x28, 0x14;
+	string255 Psycho2ID: 0xAEF4CF8, 0x58, 0x10, 0x28, 0x10, 0x28, 0x14;
+	string255 Psycho3ID: 0xAEF4CF8, 0x58, 0x10, 0x30, 0x10, 0x28, 0x14;
+	short Psycho1HP: 0xAEF4CF8, 0x58, 0x10, 0x20, 0xD0, 0x54;
+	short Psycho2HP: 0xAEF4CF8, 0x58, 0x10, 0x28, 0xD0, 0x54;
+	short Psycho3HP: 0xAEF4CF8, 0x58, 0x10, 0x30, 0xD0, 0x54;
+	short AreaStageIndex: 0xAEF1898, 0xB0, 0x60, 0x10;
+	short AreaNoIndex: 0xAEF1898, 0xB0, 0x60, 0x12;
+	short RoomNo: 0xAEF1898, 0xB0, 0x60, 0x14;
+	short RoomIndex: 0xAEF1898, 0xB0, 0x60, 0x16;
+	short PlayerLevel: 0xAEF1898, 0xE8;
+	short QParam1: 0xAEF0464, 0xC8, 0x20, 0x10;
+	short QState: 0xAEF0464, 0xC8, 0x20, 0x14;
+}
 
 startup
 {
@@ -33,60 +55,62 @@ init
         case (602001408):
             version = "20 Nov 2024";
             break;
+		case (227454976):
+			version = "1 Sep 2025";
+			break;
     }
 
-	IntPtr EventTimelineManager = vars.Helper.ScanRel(3, "48 8b 0d ???????? 83 79 ???? 74 ?? 8b 43");
-	IntPtr AreaManager = vars.Helper.ScanRel(3, "48 8b 05 ?? ?? ?? ?? 4c 8b c3 48 8b cf 48 8b 90");
-	IntPtr PlayerStatusManager = vars.Helper.ScanRel(3, "48 8b 15 ?? ?? ?? ?? 80 bb ?? ?? ?? ?? ?? 48 8b 42");
-	IntPtr SoundFlowStateManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 83 78 ???? 0f 84 ???????? 48 8b 05");
-	IntPtr EnemyManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 48 8b 90 ???????? e8 ???????? 84 c0");
-	IntPtr SCQManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 4c 8d 4d ?? 45 8b 47");
-    IntPtr SolidStorage = vars.Helper.ScanRel(3, "48 8b 15 ???????? 45 33 c9 48 8b cf 45 8d 41 ?? e8 ?? ?? ?? ?? c6 83");
+	if (version != "1 Sep 2025")
+	{
+		IntPtr EventTimelineManager = vars.Helper.ScanRel(3, "48 8b 0d ???????? 83 79 ???? 74 ?? 8b 43");
+		IntPtr AreaManager = vars.Helper.ScanRel(3, "48 8b 05 ?? ?? ?? ?? 4c 8b c3 48 8b cf 48 8b 90");
+		IntPtr PlayerStatusManager = vars.Helper.ScanRel(3, "48 8b 15 ?? ?? ?? ?? 80 bb ?? ?? ?? ?? ?? 48 8b 42");
+		IntPtr SoundFlowStateManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 83 78 ???? 0f 84 ???????? 48 8b 05");
+		IntPtr EnemyManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 48 8b 90 ???????? e8 ???????? 84 c0");
+		IntPtr SCQManager = vars.Helper.ScanRel(3, "48 8b 05 ???????? 4c 8d 4d ?? 45 8b 47");
+		IntPtr SolidStorage = vars.Helper.ScanRel(3, "48 8b 15 ???????? 45 33 c9 48 8b cf 45 8d 41 ?? e8 ?? ?? ?? ?? c6 83");
 	
-	//_CurrentChapter
-	vars.Helper["CurrentEvent"] = vars.Helper.Make<short>(EventTimelineManager, 0x78);
+		//_CurrentChapter
+		vars.Helper["CurrentEvent"] = vars.Helper.Make<short>(EventTimelineManager, 0x78);
 
-	if(version == "8 Nov 2024"){
-        vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15E);
-        vars.Helper["ZombieKills"] = vars.Helper.Make<short>(SolidStorage, 0xB8);
-    }
-    else if(version == "20 Nov 2024"){
-        vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15E);
-        vars.Helper["ZombieKills"] = vars.Helper.Make<short>(SolidStorage, 0xBC);
-    }
-    else{
-        vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15C);
-        vars.Helper["ZombieKills"] = vars.Helper.Make<short>(SolidStorage, 0xB8);
-    }
+		if(version == "8 Nov 2024"){
+	       vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15E);
+	      vars.Helper["ZombieKills"] = vars.Helper.Make<short>(SolidStorage, 0xB8);
+	   }
+	   else if(version == "20 Nov 2024"){
+	       vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15E);
+	       vars.Helper["ZombieKills"] = vars.Helper.Make<short>(SolidStorage, 0xBC);
+	   }
+	  else{
+	        vars.Helper["IsLoadingLevel"] = vars.Helper.Make<bool>(AreaManager, 0x15C);
+	        vars.Helper["ZombieKills"] = vars.Helper.Make<short>(SolidStorage, 0xB8);
+	    }
 	
-	vars.Helper["SoundFlow"] = vars.Helper.Make<byte>(SoundFlowStateManager, 0x70);
+		vars.Helper["SoundFlow"] = vars.Helper.Make<byte>(SoundFlowStateManager, 0x70);
 	
-	vars.Helper["Psycho1ID"] = vars.Helper.MakeString(EnemyManager, 0x58, 0x10, 0x20, 0x10, 0x28, 0x14);
-	vars.Helper["Psycho1HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x20, 0xD0, 0x54);
-	vars.Helper["Psycho2ID"] = vars.Helper.MakeString(EnemyManager, 0x58, 0x10, 0x28, 0x10, 0x28, 0x14);
-	vars.Helper["Psycho2HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x28, 0xD0, 0x54);
-	vars.Helper["Psycho3ID"] = vars.Helper.MakeString(EnemyManager, 0x58, 0x10, 0x30, 0x10, 0x28, 0x14);
-	vars.Helper["Psycho3HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x30, 0xD0, 0x54);
+		vars.Helper["Psycho1ID"] = vars.Helper.MakeString(EnemyManager, 0x58, 0x10, 0x20, 0x10, 0x28, 0x14);
+		vars.Helper["Psycho1HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x20, 0xD0, 0x54);
+		vars.Helper["Psycho2ID"] = vars.Helper.MakeString(EnemyManager, 0x58, 0x10, 0x28, 0x10, 0x28, 0x14);
+		vars.Helper["Psycho2HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x28, 0xD0, 0x54);
+		vars.Helper["Psycho3ID"] = vars.Helper.MakeString(EnemyManager, 0x58, 0x10, 0x30, 0x10, 0x28, 0x14);
+		vars.Helper["Psycho3HP"] = vars.Helper.Make<short>(EnemyManager, 0x58, 0x10, 0x30, 0xD0, 0x54);
 	
-	vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x10);
-	vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x12);
-	vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x14);
-	vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x16);
-    vars.Helper["PlayerLevel"] = vars.Helper.Make<short>(PlayerStatusManager, 0xE8);
+		vars.Helper["AreaStageIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x10);
+		vars.Helper["AreaNoIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x12);
+		vars.Helper["RoomNo"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x14);
+		vars.Helper["RoomIndex"] = vars.Helper.Make<short>(PlayerStatusManager, 0xB0, 0x60, 0x16);
+		vars.Helper["PlayerLevel"] = vars.Helper.Make<short>(PlayerStatusManager, 0xE8);
 
-	vars.Helper["QParam1"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x10);
-	vars.Helper["QState"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x14);
-	
+		vars.Helper["QParam1"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x10);
+		vars.Helper["QState"] = vars.Helper.Make<short>(SCQManager, 0xC8, 0x20, 0x14);
+	}
 	vars.completedSplits = new HashSet<string>();
-	vars.Enemy = EnemyManager;
 	vars.Convicts = 0;
 	vars.Hall = 0;
 }
 
 update
 {
-	//print(modules.First().ModuleMemorySize.ToString());
-	
 	vars.Helper.Update();
 	vars.Helper.MapPointers();
 }
